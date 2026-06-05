@@ -7,14 +7,18 @@ using u32 = unsigned;
 using u128 = unsigned __int128;
 using i128 = __int128;
 
-int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        std::unordered_map<int, int> hash;
+        for (int i = 0; i < nums.size(); i++) {
+            auto it = hash.find(target - nums[i]);
+            if (it != hash.end()) {
+                return {it->second, i};
+            }
+            hash[nums[i]] = i;
+        }
 
-    int a, b;
-    std::cin >> a >> b;
-
-    std::cout << a + b << "\n";
-
-    return 0;
-}
+        return {};
+    }
+};
